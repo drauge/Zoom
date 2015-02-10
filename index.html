@@ -1,0 +1,27 @@
+<html>
+<head></head>
+<title>test</title>
+<body>
+<div id="NetChart"></div>
+<script src="https://cdn.rawgit.com/drauge/Zoom/master/lib/zoomcharts.js">
+var t = new NetChart({
+        container: document.getElementById("NetChart"),
+        height: 350,
+        data:
+        {
+            dataFunction: function(nodeList, success, error){
+                //return just the first node, net chart will ask for more
+                jQuery.ajax({
+                    url:"https://zoomcharts.com/dvsl/data/net-chart/friend-net/"+nodeList[0]+".json",
+                    success: success,
+                    error: error});
+            }
+        },
+        navigation:{
+            initialNodes:["m-1"],
+            mode:"manual"
+        }
+    });
+</script>
+</body>
+</html>
